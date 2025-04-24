@@ -1,7 +1,8 @@
 FROM node:22
 RUN mkdir /opt/server
+ADD https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip /tmp/backend.zip
 WORKDIR /opt/server
-ADD https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip /opt/server/
+RUN unzip /tmp/backend.zip
 ENV DB_HOST="mysql"
 RUN npm install
 EXPOSE 8080
