@@ -10,7 +10,7 @@ services:
     volumes:
       - expense-mysql:/var/lib/mysql
   backend:
-    image: sankar491:backend:v1
+    image: sankar491/backend:v1
     container_name: backend
     command: sh -C "sleep 5 && node /opt/server/index.js"
     depends_on:
