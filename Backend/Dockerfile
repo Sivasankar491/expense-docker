@@ -10,9 +10,13 @@
 
 
 FROM node:20 AS builder
+# WORKDIR /opt/server
+# COPY package.json .
+# COPY *.js .
+# RUN mkdir /opt/server
+ADD https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip /tmp/backend.zip
 WORKDIR /opt/server
-COPY package.json .
-COPY *.js .
+RUN unzip /tmp/backend.zip
 RUN npm install
 
 
