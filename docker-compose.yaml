@@ -1,0 +1,24 @@
+version: '3'
+networks:
+  expense:
+volumes:
+  expense-mysql:
+services:
+  mysql:
+    image: sankar491/mysql:v1
+    container_name: mysql
+    volumes:
+      - mysql: /var/lib/mysql
+  backend:
+    image: sankar491:backend:v1
+    container_name: backend
+    command: sh -C "sleep 5 && node /opt/server/index.js"
+    depends_on:
+      - mysql
+  frontend:
+    image: sankar491/frontend:v1
+    container_name: frontend
+    depends_on:
+      - backend
+    ports:
+      - 80:80
